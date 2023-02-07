@@ -3,7 +3,7 @@ version: '3.6'
 services:
   db:
     image: docker.elektrosolid.de/metasfresh-db
-    restart: always
+#    restart: always
     volumes:
       - ./volumes/db/data:/var/lib/postgresql/data
       - ./volumes/db/log:/var/log/postgresql
@@ -18,7 +18,7 @@ services:
   app:
     image: docker.elektrosolid.de/metasfresh-app
     hostname: app
-    restart: always
+#    restart: always
     volumes:
       - ./volumes/app/log:/opt/metasfresh/log:rw
       - ./volumes/app/heapdump:/opt/metasfresh/heapdump:rw
@@ -34,7 +34,7 @@ services:
   # uncomment following port:
     #ports:
      #- "8080:8080"
-    restart: always
+#    restart: always
     volumes:
       - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
       - ./volumes/webapi/heapdump:/opt/metasfresh-webui-api/heapdump:rw
@@ -43,9 +43,9 @@ services:
   webui:
     image: docker.elektrosolid.de/metasfresh-webui
     ports:
-      - "8080:80"
+      - "8880:80"
       - "8443:443"
-    restart: always
+#    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -54,7 +54,7 @@ services:
       #- WEBAPI_URL=http://example.com:8080
   rabbitmq:
     image: docker.elektrosolid.de/metasfresh-rabbitmq
-    restart: always
+#    restart: always
     volumes:
       - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
       - /etc/localtime:/etc/localtime:ro
@@ -86,4 +86,4 @@ services:
       - /etc/timezone:/etc/timezone:ro
     environment:
       - "ES_JAVA_OPTS=-Xms128M -Xmx256m"
-    restart: always
+#    restart: always
