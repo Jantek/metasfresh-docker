@@ -5,8 +5,8 @@ services:
     image: docker.elektrosolid.de/metasfresh-db
 #    restart: always
     volumes:
-      - ./volumes/db/data:/var/lib/postgresql/data
-      - ./volumes/db/log:/var/log/postgresql
+#      - ./volumes/db/data:/var/lib/postgresql/data
+#      - ./volumes/db/log:/var/log/postgresql
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
@@ -20,9 +20,9 @@ services:
     hostname: app
 #    restart: always
     volumes:
-      - ./volumes/app/log:/opt/metasfresh/log:rw
-      - ./volumes/app/heapdump:/opt/metasfresh/heapdump:rw
-      - ./volumes/app/external-lib:/opt/metasfresh/external-lib:rw
+#      - ./volumes/app/log:/opt/metasfresh/log:rw
+#      - ./volumes/app/heapdump:/opt/metasfresh/heapdump:rw
+#      - ./volumes/app/external-lib:/opt/metasfresh/external-lib:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
@@ -36,8 +36,8 @@ services:
      #- "8080:8080"
 #    restart: always
     volumes:
-      - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
-      - ./volumes/webapi/heapdump:/opt/metasfresh-webui-api/heapdump:rw
+#      - ./volumes/webapi/log:/opt/metasfresh-webui-api/log:rw
+#      - ./volumes/webapi/heapdump:/opt/metasfresh-webui-api/heapdump:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
   webui:
@@ -56,7 +56,7 @@ services:
     image: docker.elektrosolid.de/metasfresh-rabbitmq
 #    restart: always
     volumes:
-      - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
+#      - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
@@ -81,7 +81,7 @@ services:
   #   - "9200:9200"
   #   - "9300:9300"
     volumes:
-      - ./volumes/search/data:/usr/share/elasticsearch/data
+#      - ./volumes/search/data:/usr/share/elasticsearch/data
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
