@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   db:
-    build: db
+    build: ./db
     restart: always
     volumes:
       - ./volumes/db/data:/var/lib/postgresql/data
@@ -16,12 +16,8 @@ services:
       - DB_SYSPASS=System
       - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
   app:
-    build: app
+    build: ./app
     hostname: app
-    links:
-      - db:db
-      - rabbitmq:rabbitmq
-      - search:search
     expose:
       - "8282"
       - "8788"
@@ -35,12 +31,7 @@ services:
     environment:
       - METASFRESH_HOME=/opt/metasfresh
   webapi:
-    build: webapi
-    links:
-      - app:app
-      - db:db
-      - rabbitmq:rabbitmq
-      - search:search
+    build: ./webapi
     expose:
       - "8789"
   # to access the webui-api directly 
@@ -55,9 +46,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
   webui:
-    build: webui
-    links:
-      - webapi:webapi
+    build: ./webui
     ports:
       - "80:80"
       - "443:443"
@@ -69,7 +58,7 @@ services:
     #environment:
       #- WEBAPI_URL=http://example.com:8080
   rabbitmq:
-    build: rabbitmq
+    build: ./rabbitmq
     expose:
       - "5672"
     restart: always
@@ -82,7 +71,7 @@ services:
       RABBITMQ_DEFAULT_PASS: "metasfresh"
       RABBITMQ_DEFAULT_VHOST: "/"
   search:
-    build: search
+    build: ./search
     ulimits:
       memlock:
         soft: -1
