@@ -1,3 +1,5 @@
+version: '3.6'
+
 db:
   build: db
   restart: always
