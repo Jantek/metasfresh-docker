@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   db:
-    build: ./db
+    image: docker.elektrosolid.de/metasfresh-db
     restart: always
     volumes:
       - ./volumes/db/data:/var/lib/postgresql/data
@@ -16,7 +16,7 @@ services:
       - DB_SYSPASS=System
       - POSTGRES_PASSWORD=ip2LmNzXX8p8iXg9lZTWEJ9524kQDbXFudB7LR03T-xK9fLweX3TLMkA2AYcEiaS
   app:
-    build: ./app
+    image: docker.elektrosolid.de/metasfresh-app
     hostname: app
     restart: always
     volumes:
@@ -28,7 +28,7 @@ services:
     environment:
       - METASFRESH_HOME=/opt/metasfresh
   webapi:
-    build: ./webapi
+    image: docker.elektrosolid.de/metasfresh-webapi
   # to access the webui-api directly 
   # (eg. for debugging or connecting your app to the metasfresh api) 
   # uncomment following port:
@@ -41,7 +41,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
   webui:
-    build: ./webui
+    image: docker.elektrosolid.de/metasfresh-webui
     ports:
       - "80:80"
       - "443:443"
@@ -53,7 +53,7 @@ services:
     #environment:
       #- WEBAPI_URL=http://example.com:8080
   rabbitmq:
-    build: ./rabbitmq
+    image: docker.elektrosolid.de/metasfresh-rabbitmq
     restart: always
     volumes:
       - ./volumes/rabbitmq/log:/var/log/rabbitmq/log
@@ -64,7 +64,7 @@ services:
       RABBITMQ_DEFAULT_PASS: "metasfresh"
       RABBITMQ_DEFAULT_VHOST: "/"
   search:
-    build: ./search
+    image: docker.elektrosolid.de/metasfresh-search
     ulimits:
       memlock:
         soft: -1
